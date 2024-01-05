@@ -28,6 +28,11 @@ export async function POST(req: Request, res: Response) {
   switch (event.type) {
     case checkout_session_completed:
       const session = event.data.object;
+      
+      if (!session.metadata) {
+        console.log('Metadata is null');
+        break;
+      }
 
       const {
         // @ts-ignore
@@ -43,7 +48,6 @@ export async function POST(req: Request, res: Response) {
           totalPrice,
         },
       } = session;
-     
 
       await createBooking({
         adults: Number(adults),
