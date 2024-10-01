@@ -5,5 +5,5 @@ export type User={
     isAdmin: boolean;
     about: string | null;
     _createdAt: string;
-    image: string;
+    image: string | null;
 };

@@ -8,6 +8,7 @@ import Search from "@/components/Search/Search";
 import RoomCard from "@/components/RoomCard/RoomCard";
 
 
+
 const Rooms = () => {
 
     const [roomTypeFilter, setRoomTypeFilter] = useState('');
@@ -28,6 +29,7 @@ const Rooms = () => {
     }
 
     const { data, error, isLoading } = useSWR("get/hotelRooms", fetchData)
+    
 
     if (error) throw new Error('Cannot fetch data');
 
