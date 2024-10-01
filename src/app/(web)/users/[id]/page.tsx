@@ -1,7 +1,7 @@
 'use client';
 
 import useSWR from 'swr';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { FaUser, FaSignOutAlt } from 'react-icons/fa';
 import Image from 'next/image';
 import axios from 'axios';
 import { signOut } from 'next-auth/react';
@@ -98,13 +98,19 @@ const UserDetails = (props: { params: { id: string } }) => {
       <div className='grid md:grid-cols-12 gap-10'>
         <div className='hidden md:block md:col-span-4 lg:col-span-3 shadow-lg h-fit sticky top-10 bg-[#eff0f2] text-black rounded-lg px-6 py-4'>
           <div className='md:w-[143px] w-28 h-28 md:h-[143px] mx-auto mb-5 rounded-full overflow-hidden'>
-            <Image
-              src={userData.image}
-              alt={userData.name}
-              width={143}
-              height={143}
-              className='img scale-animation rounded-full'
-            />
+            {userData.image ? (
+              <Image
+                src={userData.image}
+                alt={userData.name}
+                width={143}
+                height={143}
+                className='img scale-animation rounded-full'
+              />
+            ) : (
+              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                <FaUser size={70} className="text-gray-400" />
+              </div>
+            )}
           </div>
           <div className='font-normal py-4 text-left'>
             <h6 className='text-xl font-bold pb-3'>About</h6>
@@ -127,13 +133,19 @@ const UserDetails = (props: { params: { id: string } }) => {
             <h5 className='text-2xl font-bold mr-3'>Hello, {userData.name}</h5>
           </div>
           <div className='md:hidden w-14 h-14 rounded-l-full overflow-hidden'>
-            <Image
-              className='img scale-animation rounded-full'
-              width={56}
-              height={56}
-              src={userData.image}
-              alt='User  Name'
-            />
+          {userData.image ? (
+              <Image
+                src={userData.image}
+                alt={userData.name}
+                width={143}
+                height={143}
+                className='img scale-animation rounded-full'
+              />
+            ) : (
+              <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                <FaUser size={70} className="text-gray-400" />
+              </div>
+            )}
           </div>
           <p className='block w-fit md:hidden text-sm py-2'>
             {userData.about ?? ''}
